@@ -1,0 +1,6 @@
+setup.py
+app_hackaton.egg-info/PKG-INFO
+app_hackaton.egg-info/SOURCES.txt
+app_hackaton.egg-info/dependency_links.txt
+app_hackaton.egg-info/requires.txt
+app_hackaton.egg-info/top_level.txt
