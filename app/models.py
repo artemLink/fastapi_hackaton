@@ -33,3 +33,4 @@ class gum_help_table(Base):
     title = Column(String)
     address = Column(String)
     timing = Column(String)
+    city = Column(String)
