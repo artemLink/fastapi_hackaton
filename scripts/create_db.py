@@ -29,6 +29,7 @@ def main():
     create table gum_help_table (
     id integer not null primary key,
     title varchar(256),
+    city varchar(256),
     address varchar(256),
     timing varchar(256));
     """)
