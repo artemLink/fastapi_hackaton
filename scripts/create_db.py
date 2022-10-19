@@ -31,7 +31,7 @@ def main():
     title varchar(256),
     city varchar(256),
     address varchar(256),
-    timing varchar(256));
+    description varchar(256));
     """)
 
 
