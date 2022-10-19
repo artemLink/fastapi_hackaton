@@ -31,7 +31,7 @@ def references(id_from: int, database=Depends(connect_db)):
     return book
 
 
-@router.get('api/GetNews/{id_from}')
+@router.get('/api/GetNews/{id_from}')
 def news(id_form: int, database=Depends(connect_db)):
     book = {'content': []}
     count_of_news = database.query(news_table).order_by(news_table.id.desc()).first()
@@ -40,16 +40,16 @@ def news(id_form: int, database=Depends(connect_db)):
         for item in req:
             book['content'].append(
                 {'title': item.title,
-                 'descript': item.descript,
-                 'region': item.region}
+                 'link': item.link,
+                 'hash': item.hash}
             )
     elif count_of_news.id == 0:
         req = database.query(news_table).all()
         for item in req:
             book['content'].append(
                 {'title': item.title,
-                 'descript': item.descript,
-                 'region': item.region}
+                 'link': item.link,
+                 'hash': item.hash}
             )
     else:
         return {'content': []}
