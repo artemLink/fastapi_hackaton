@@ -6,13 +6,27 @@ from app.models import connect_db, references_table, Base, news_table, gum_help_
 router = APIRouter()
 
 
-@router.post('api/GetReferences')
-def references(database=Depends(connect_db)):
+@router.get('/api/GetReferences/{id_from}')
+def references(id_from: int, database=Depends(connect_db)):
     book = {'content': []}
-    req = database.query(references_table).all()
-    for item in req:
-        book['content'].append({'title': item.title,
-                                'descript': item.descript.split(';')})
+
+    count_of_help = database.query(references_table).order_by(references_table.id.desc()).first()
+    if count_of_help.id - id_from >= 1:
+        req = database.query(references_table).filter(references_table.id > id_from).all()
+        for item in req:
+            book['content'].append(
+                {'title': item.title,
+                  'descript': item.descript.split(';')}
+            )
+    elif count_of_help.id == 0:
+        req = database.query(references_table).all()
+        for item in req:
+            book['content'].append(
+                {{'title': item.title,
+                  'descript': item.descript}}
+            )
+    else:
+        return {'content': []}
 
     return book
 
@@ -43,17 +57,19 @@ def news(id_form: int, database=Depends(connect_db)):
     return book
 
 
-@router.get('api/GetGum/{city}')
+@router.get('/api/GetGum/{city}')
 def gum_help(city: str, database=Depends(connect_db)):
     book = {'content': []}
     items = database.query(gum_help_table).filter(gum_help_table.city == city).all()
 
-    for req in items:
+    for item in items:
         book['content'].append(
             {
-                'title': req.title,
-                'address': req.address,
-                'timing': req.timing
+                'title': item.title,
+                'description': item.description,
+                'city': item.city,
+                'address': item.address
+
             }
         )
 
