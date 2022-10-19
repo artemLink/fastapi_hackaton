@@ -23,8 +23,8 @@ class news_table(Base):
     __tablename__ = 'news_table'
     id = Column(Integer, primary_key=True)
     title = Column(String)
-    descript = Column(String)
-    region = Column(String)
+    link = Column(String)
+    hash = Column(String)
 
 
 class gum_help_table(Base):
