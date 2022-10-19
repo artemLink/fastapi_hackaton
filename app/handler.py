@@ -16,7 +16,7 @@ def references(id_from: int, database=Depends(connect_db)):
         for item in req:
             book['content'].append(
                 {'title': item.title,
-                  'descript': item.descript.split(';')}
+                  'descript': item.descript}
             )
     elif count_of_help.id == 0:
         req = database.query(references_table).all()
