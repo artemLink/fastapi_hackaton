@@ -32,11 +32,11 @@ def references(id_from: int, database=Depends(connect_db)):
 
 
 @router.get('/api/GetNews/{id_from}')
-def news(id_form: int, database=Depends(connect_db)):
+def news(id_from: int, database=Depends(connect_db)):
     book = {'content': []}
     count_of_news = database.query(news_table).order_by(news_table.id.desc()).first()
-    if count_of_news.id - id_form >= 1:
-        req = database.query(news_table).filter(news_table.id > id_form).all()
+    if count_of_news.id - id_from >= 1:
+        req = database.query(news_table).filter(news_table.id > id_from).all()
         for item in req:
             book['content'].append(
                 {'title': item.title,
