@@ -20,8 +20,8 @@ def main():
     create table news_table (
     id integer not null primary key,
     title varchar(256),
-    descript varchar(256),
-    region varchar(256)
+    hash int(256),
+    link varchar(256)
     );
     """)
 
