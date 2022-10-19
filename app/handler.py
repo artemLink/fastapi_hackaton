@@ -16,14 +16,16 @@ def references(id_from: int, database=Depends(connect_db)):
         for item in req:
             book['content'].append(
                 {'title': item.title,
-                  'descript': item.descript}
+                 'descript': item.descript,
+                 'id': item.id}
             )
     elif count_of_help.id == 0:
         req = database.query(references_table).all()
         for item in req:
             book['content'].append(
-                {{'title': item.title,
-                  'descript': item.descript}}
+                {'title': item.title,
+                 'descript': item.descript,
+                 'id': item.id}
             )
     else:
         return {'content': []}
@@ -41,7 +43,8 @@ def news(id_from: int, database=Depends(connect_db)):
             book['content'].append(
                 {'title': item.title,
                  'link': item.link,
-                 'hash': item.hash}
+                 'hash': item.hash,
+                 'id': item.id}
             )
     elif count_of_news.id == 0:
         req = database.query(news_table).all()
@@ -49,7 +52,8 @@ def news(id_from: int, database=Depends(connect_db)):
             book['content'].append(
                 {'title': item.title,
                  'link': item.link,
-                 'hash': item.hash}
+                 'hash': item.hash,
+                 'id': item.id}
             )
     else:
         return {'content': []}
@@ -68,7 +72,8 @@ def gum_help(city: str, database=Depends(connect_db)):
                 'title': item.title,
                 'description': item.description,
                 'city': item.city,
-                'address': item.address
+                'address': item.address,
+                'id': item.id
 
             }
         )
