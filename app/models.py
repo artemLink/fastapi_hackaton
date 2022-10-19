@@ -32,5 +32,5 @@ class gum_help_table(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     address = Column(String)
-    timing = Column(String)
+    description = Column(String)
     city = Column(String)
