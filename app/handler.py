@@ -79,3 +79,12 @@ def gum_help(city: str, database=Depends(connect_db)):
         )
 
     return book
+
+
+@router.get('/api/GetSitiesHelp')
+def get_sities(database=Depends(connect_db)):
+    book = {'content': []}
+    items = database.query(gum_help_table.city)
+    for item in set(items):
+        book['content'].append(item)
+    return book
